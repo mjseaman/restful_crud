@@ -5,14 +5,14 @@
   	  <h3 class="note_title" data-id="<%= note.id %>"><%= note.  title %></h3>
   	  <form class="update_form" action="/update" method="get">
   	  	<input type="hidden" name="id" value="<%= note.id %>">
-  	  	<input class="update_link btn btn-mini btn-primary" type="submit"   value="Edit">
+  	  	<input class="update_link btn btn-mini btn-success" type="submit"   value="Edit">
   	  </form>
 
-  	  	<button class="delete_submit btn btn-mini btn-primary" type="submit" >delete</button>
+  	  	<button class="delete_submit btn btn-mini btn-warning" type="submit" >delete</button>
 
   	  <form class="delete_confirm" action="/delete" method="post">
   	  	<input type="hidden" name="id" value="<%= note.id %>">
-  	  	<input class="update_link btn btn-mini btn-primary" type="submit"   value="really delete?">
+  	  	<input class="update_link btn btn-mini btn-danger" type="submit"   value="really delete?">
   	  </form>
   	  <p data-id="<%= note.id %>"><%= note.content %></p>
   	</div>
