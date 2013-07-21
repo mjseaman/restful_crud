@@ -1,14 +1,19 @@
-<div class="read note">
-  <h2 class="section_title">Read em here</h2>
+
 
   <% Note.order("updated_at DESC").each do |note| %>
-  	<h3><%= note.title %></h3>
-  	<form action="/update" method="get">
-  		<input type="hidden" value="<%= note.id %>">
-  		<input class="update_link" type="submit" value="Edit">
-  	</form>
-<!--   	<p><a href="/update/<%= note.id %>">Update</a></p> -->
-  	<p><%= note.content %></p>
+  	<div>
+  	  <h3 class="note_title" data-id="<%= note.id %>"><%= note.  title %></h3>
+  	  <form class="update_form" action="/update" method="get">
+  	  	<input type="hidden" name="id" value="<%= note.id %>">
+  	  	<input class="update_link btn btn-mini btn-primary" type="submit"   value="Edit">
+  	  </form>
+
+  	  	<button class="delete_submit btn btn-mini btn-primary" type="submit" >delete</button>
+
+  	  <form class="delete_confirm" action="/delete" method="post">
+  	  	<input type="hidden" name="id" value="<%= note.id %>">
+  	  	<input class="update_link btn btn-mini btn-primary" type="submit"   value="really delete?">
+  	  </form>
+  	  <p data-id="<%= note.id %>"><%= note.content %></p>
+  	</div>
   <% end %>
-</div>
-	

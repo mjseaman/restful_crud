@@ -1,18 +1,22 @@
-<div class="update note">
-    <h2 class="section_title">Update with care</h2>
-  
-    <form action="/update" method="post">
+<!-- <div class="update note"> --> 
 
-      <input type="hidden" name="id" value="<%= @note_update.id %>">
-    
-      <p class="label">Title</p>
-      <input type="text" name="title" value="<%= @note_update.title %>"><br>
-    
-      <p class="label">Content</p>
-      <TEXTAREA name="content" rows=3 cols=30 ><%= @note_update.  content %></TEXTAREA>
-      <br>
-    
-      <input type="submit" value="Make History">
-    
-    </form>
-</div>
+
+<% if @note_update %>
+  <form action="/update" method="post">
+  
+    <input type="hidden" name="id" value="<%= @note_update.id %>  ">
+  
+    <p class="label">Title</p><br>
+    <input type="text" name="title" value="<%= @note_update.  title %>"><br>
+  
+    <p class="label">Content</p><br>
+    <TEXTAREA name="content" rows=3 cols=30 ><%= @note_update.    content %></TEXTAREA>
+    <br>
+  
+    <input class="btn btn-primary" type="submit" value="Make History">
+  
+  </form>
+<% else %>
+  <p>No notes to update.</p>
+<% end %>
+<!-- </div> -->

@@ -4,13 +4,14 @@ end
 
 post '/create' do
   @note = Note.create(params)
-  erb :index
+  redirect '/'
 end
 
 get '/update' do
-  @note_update = Note.find(params[:id])
+  @note_update = Note.find(params["id"])
   puts params[:id]
   puts @note_update
+  erb :_update, :layout => !request.xhr?
 end
 
 post '/update' do
@@ -19,4 +20,10 @@ post '/update' do
   note.content = params[:content]
   note.save
   erb :index
+end
+
+post '/delete' do
+  note = Note.find(params[:id])
+  note.destroy
+  redirect '/'
 end

@@ -4,29 +4,39 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-  $(".create_link").on('click',function() {
-  	event.preventDefault();
-  	$(".note").hide();
-  	$(".create").show();
+  
+  $(".section_title").on('click',function(){
+  	var title = $(this)
+  	title.next().slideToggle(100);
   });
 
-  $(".read_link").on('click',function() {
-  	event.preventDefault();
-  	$(".note").hide();
-  	$(".read").show();
+  $(".create_link").on('click',function(){
+  	$(".create.note").slideToggle(100);
   });
 
-  $(".update_link").on('click',function() {
+  $(".update_form").on('submit',function() {
   	event.preventDefault();
-  	console.log("In update onclick")
+  	console.log("In update onclick");
+  	var form = $(this);
+  	console.log(form.serialize());
+  	console.log(form.action);
   	$.ajax({
   		url: this.action,
   		type: this.method,
-  		data: $(".update_link").serialize()
-  	}).done(function() {
-  		console.log("Nailed it.");
-  		$(".note").hide();
-  		$(".update").show();
+  		data: form.serialize()
+  	}).done(function(update_data) {
+  		// debugger
+  		// $(".note").hide();
+  		// $(".update").show();
+  		form.parent().children().hide();
+  		form.parent().append(update_data);
   	});
+  });
+
+  $(".delete_submit").on('click',function(){
+	console.log("In it")
+	var parent = $(this).parent();
+	$(this).hide();
+	parent.find(".delete_confirm").css({"display":"inline-block"});
   });
 });
