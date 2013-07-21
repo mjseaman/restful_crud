@@ -9,8 +9,6 @@ end
 
 get '/update' do
   @note_update = Note.find(params["id"])
-  puts params[:id]
-  puts @note_update
   erb :_update, :layout => !request.xhr?
 end
 
